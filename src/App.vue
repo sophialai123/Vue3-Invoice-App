@@ -1,8 +1,9 @@
 <template>
   <div>
-    <div v-if="!mobile" class="app flex flex-column">
+    <div v-if="!mobileSize" class="app flex flex-column">
       <NavigationComp />
       <div class="app-content flex flex-column">
+        <InvoiceModal />
         <router-view />
       </div>
     </div>
@@ -15,10 +16,12 @@
 
 <script>
 import NavigationComp from "@/components/NavigationComp.vue";
+import InvoiceModal from "./components/InvoiceModal.vue";
 
 export default {
   components: {
     NavigationComp,
+    InvoiceModal,
   },
   data() {
     return {
@@ -35,7 +38,7 @@ export default {
   methods: {
     checkScreen() {
       const windonwWidth = window.innerWidth;
-      if (windonwWidth >= 750) {
+      if (windonwWidth <= 750) {
         this.mobileSize = true;
         return;
       }
